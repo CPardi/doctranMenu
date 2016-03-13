@@ -3,8 +3,7 @@
     $.fn.extend({
         doctranMenu: function (user_options) {
 
-            var
-                defaults = {
+            var defaults = {
                     "expandDuration": 0,
                     "hideDuration": 0,
                     "recursiveClose": true,
@@ -156,8 +155,8 @@
 
                         // Change display to stop resize on hide and change the switch's image.
                         if(plugin.is(":hidden")) {
-                            menuUl.css({"width": "auto", "display": "inline-block"});
                             showHideImg.attr("src", "img/hide.png");
+                            menuUl.css({"width": "auto", "display": "inline-block"});
                         }
                         else {
                             menuUl.css({"width": plugin.width(), "display": "block"});
