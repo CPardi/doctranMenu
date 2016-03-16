@@ -12,9 +12,11 @@
         $(document).ready(function () {
             "use strict";
             $("#example1").doctranMenu({
-                "expandDuration": 150,
-                "hideDuration": 300,
-                "appendShowHide": "#toggle1",
+                "toggleDuration": 150,
+                "showHide": {
+                    "toggleDuration": 300,
+                    "appendTo": "#toggle1"
+                },
                 "search": {"formAttr": {action: "search.html"}}
             });
         });
@@ -23,14 +25,14 @@
     <script>
         $(document).ready(function () {
             "use strict";
-            $("#example2").doctranMenu({"expandDuration": 150, "search": {"formAttr": {action: "search.html"}}});
+            $("#example2").doctranMenu({"toggleDuration": 150, "search": {"formAttr": {action: "search.html"}}});
         });
     </script>
 
     <script>
         $(document).ready(function () {
             "use strict";
-            $("#example3").doctranMenu({"expandDuration": 150, "search": {"formAttr": {action: "search.html"}}});
+            $("#example3").doctranMenu({"toggleDuration": 150, "search": {"formAttr": {action: "search.html"}}});
         });
     </script>
 
@@ -38,7 +40,24 @@
 
 <body>
 
-<div style="float:left;margin-right:3em;width:15em;" id="example1" class="doctran-menu">
+<div style="float:left;margin-right:3em;width:20em;" id="example1" class="doctran-menu">
+    <ul>
+        <li><span class="title">Search Engines</span>
+            <ul>
+                <li><a href="www.google.com">Google</a>
+                    <ul>
+                        <li><a href="www.images.google.com">Images</a>
+                        </li>
+                        <li><a href="www.maps.google.com">Maps</a>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="www.yahoo.co.uk">Yahoo</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <br/>
     <ul>
         <li><span class="title">Search Engines</span>
             <ul>

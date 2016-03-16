@@ -21,168 +21,210 @@
 @phi: 1.618; // Expander uses golden ratio to calculation its width.
 @item-height: 1.6em;
 
-// Base style that assumns no CSS3 and Javascript available.
+// Base style that assumnes no CSS3 and Javascript available.
 .doctran-menu {
-    font-family: sans-serif;
-    font-size: @item-font-size;
-    color: @text;
-    background-color: @base-color;
-    overflow: auto;
+  font-family: sans-serif;
+  font-size: @item-font-size;
+  color: @text;
+  background-color: @base-color;
+  overflow: auto;
+  ul {
+    list-style: none;
+    margin: 0;
+    padding-left: 1em;
 
-    ul {
-        list-style: none;
-        margin: 0;
-        padding-left: 1em;
+    li {
+      > .active {
+        background-color: @active;
 
-        li {
-            >.active {
-                background-color: @active;
-
-                &:hover { background-color: @active; }
-            }
-
-            >.title, >a {
-                color: @text;
-                display: block;
-                line-height: unit(@item-height);
-                padding-left: 0.3em;
-            }
-
-            >.title {
-                cursor: default;
-                font-style: italic;
-            }
-
-            > a {
-                text-decoration: none;
-
-                &:hover {
-                    color: @text;
-                    background-color: @highlight1;
-                    cursor: hand;
-                    cursor: pointer;
-                }
-
-                &:visited { color: @text; }
-            }
-
-            &.sublist {
-                margin-left: 0;
-
-                >span, >a {
-                    display: block;
-                    cursor: default;
-                    font-style: italic;
-                    font-size: @subtitle-font-size;
-                    text-decoration: underline;
-                    margin: 0;
-                    padding: 0.5em 0 0.2em 0.3em*@item-font-size/@subtitle-font-size;
-                }
-
-                >ul {
-                    margin-left: 0;
-                    padding-left: 0;
-                }
-            }
+        &:hover {
+          background-color: @active;
         }
-    }
+      }
 
-    >ul { padding: 0 0 2em 0.5em; }
+      > .title, > a {
+        color: @text;
+        display: block;
+        line-height: unit(@item-height);
+        padding-left: 0.3em;
+      }
+
+      > .title {
+        cursor: default;
+        font-style: italic;
+      }
+
+      > a {
+        text-decoration: none;
+
+        &:hover {
+          color: @text;
+          background-color: @highlight1;
+          cursor: hand;
+          cursor: pointer;
+        }
+
+        &:visited {
+          color: @text;
+        }
+      }
+
+      &.sublist {
+        margin-left: 0;
+
+        > span, > a {
+          display: block;
+          cursor: default;
+          font-style: italic;
+          font-size: @subtitle-font-size;
+          text-decoration: underline;
+          margin: 0;
+          padding: 0.5em 0 0.2em 0.3em*@item-font-size/@subtitle-font-size;
+        }
+
+        > ul {
+          margin-left: 0;
+          padding-left: 0;
+        }
+      }
+    }
+  }
+
+  > ul {
+    padding-left: 0.5em;
+  }
 }
 
 // Extra styling for javascript enabled browsers.
 .jsEnabled.doctran-menu {
-    form {
-        margin: 1em 5%;
-        text-align: center;
+  form {
+    margin: 1em 5%;
+    text-align: center;
 
-        &>input {
-            color: @text;
-            background: darken(@active, 5%) url(img/search.png) no-repeat 0.5em 0.5em;
-            padding: 0.5em 0 0.5em 0;
-            text-indent: 2.25em;
-            border: 1px solid @text;
-            width: 100%;
+    & > input {
+      color: @text;
+      background: darken(@active, 5%) url(img/search.png) no-repeat 0.5em 0.5em;
+      background-image: url("img/search.svg"), none;
+      padding: 0.5em 0 0.5em 0;
+      text-indent: 2.25em;
+      border: 1px solid @text;
+      width: 100%;
 
-            &.active { background-color: @active; }
+      &.active {
+        background-color: @active;
+      }
 
-            &:hover { .active(); }
-        }
+      &:hover {
+        .active();
+      }
+    }
+  }
+
+  ul > li {
+    &.targeted {
+      background-color: @highlight0;
     }
 
-    ul>li {
-        &.targeted { background-color: @highlight0; }
-
-        &.hover, &.focused {
-            >a, >span { background-color: @highlight1; }
-        }
-
-        &.active>a { background-color: @active; }
-
-        >a, >span { padding-left: 1.4em; }
-
-        >.expander {
-            margin: 0;
-            padding: 0;
-            cursor: hand;
-            cursor: pointer;
-            float: left;
-            height: @item-height;
-            width: @item-height / @phi;
-            text-align: center;
-
-            >a {
-                color: @text;
-                font-size: @expander-font-size;
-                line-height: unit(@item-height / @expander-font-size);
-            }
-
-            &:hover { background-color: @highlight2; }
-        }
-
-        &.sublist {
-            margin-left: 0em;
-
-            >ul { margin-left: 0; }
-        }
+    &.hover, &.focused {
+      > a, > span {
+        background-color: @highlight1;
+      }
     }
 
-    >.searchResults li {
-        margin-bottom: 0.5em;
-
-        >a>.resultInfo {
-            font-size: 0.8em;
-            font-style: italic;
-        }
+    &.active > a {
+      background-color: @active;
     }
+
+    > a, > span {
+      padding-left: 1.4em;
+    }
+
+    > .expander {
+      margin: 0;
+      padding: 0;
+      cursor: hand;
+      cursor: pointer;
+      float: left;
+      height: @item-height;
+      width: @item-height / @phi;
+      text-align: center;
+
+      > a {
+        color: @text;
+        font-size: @expander-font-size;
+        line-height: unit(@item-height / @expander-font-size);
+      }
+
+      &:hover {
+        background-color: @highlight2;
+      }
+    }
+
+    &.sublist {
+      margin-left: 0em;
+
+      > ul {
+        margin-left: 0;
+      }
+    }
+  }
+
+  > .searchResults li {
+    margin-bottom: 0.5em;
+
+    > a > .resultInfo {
+      font-size: 0.8em;
+      font-style: italic;
+    }
+  }
 }
 
 // Extra styling for CSS3 enabled browsers.
 .doctran-menu {
-    background: linear-gradient(spin(@base-color, -30), spin(@base-color,30));
+  background: linear-gradient(spin(@base-color, -30), spin(@base-color, 30));
 
-    >ul li {
-        >a, >span {
-            text-shadow: 1px 0px 0px #000;
-            -webkit-border-top-left-radius: 0.2em;
-            -webkit-border-bottom-left-radius: 0.2em;
-            -moz-border-radius-topleft: 0.2em;
-            -moz-border-radius-bottomleft: 0.2em;
-            border-top-left-radius: 0.2em;
-            border-bottom-left-radius: 0.2em;
-        }
+  > ul li {
+    > a, > span {
+      text-shadow: 1px 0 0 #000;
+      -webkit-border-top-left-radius: 0.2em;
+      -webkit-border-bottom-left-radius: 0.2em;
+      -moz-border-radius-topleft: 0.2em;
+      -moz-border-radius-bottomleft: 0.2em;
+      border-top-left-radius: 0.2em;
+      border-bottom-left-radius: 0.2em;
     }
+  }
 }
 
 // Extra styling for CSS3 and javascript enabled browsers.
 .jsEnabled.doctran-menu {
-    >form >input {
-        -webkit-border-radius: 0.2em;
-        -moz-border-radius: 0.2em;
-        border-radius: 0.2em;
-    }
+  > form > input {
+    -webkit-border-radius: 0.2em;
+    -moz-border-radius: 0.2em;
+    border-radius: 0.2em;
+  }
 
-    ul>li {
-        &.targeted { background: radial-gradient(ellipse at center, @highlight0 0%, @highlight0 75%,rgba(255, 255, 255, 0) 100%); }
+  ul > li {
+    &.targeted {
+      background: radial-gradient(ellipse at center, @highlight0 0%, @highlight0 75%, rgba(255, 255, 255, 0) 100%);
     }
+  }
+}
+
+.doctran-menu-show-hide-img {
+  width: 25px;
+  height: 25px;
+  display: inline-block;
+  background-repeat: no-repeat;
+  cursor: hand;
+  cursor: pointer;
+
+  &.show {
+    background: url("img/show.png");
+    background-image: url("img/show.svg"), none;
+  }
+  &.hide {
+    background: url("img/hide.png");
+    background-image: url("img/hide.svg"), none;
+  }
 }

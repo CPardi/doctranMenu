@@ -4,15 +4,19 @@
         doctranMenu: function (user_options) {
 
             var defaults = {
-                    "expandDuration": 0,
-                    "hideDuration": 0,
+                    "toggleDuration": 0,
                     "recursiveClose": true,
                     "uniqueBranching": true,
                     "expanderOpen": "▼",
                     "expanderClosed": "▶",
                     "markTargeted": true,
                     "openActive": true,
-                    "appendShowHide": null,
+                    "showHide": {
+                        "toggleDuration": 0,
+                        "appendTo": null,
+                        "onShow": null,
+                        "onHide": null
+                    },
                     "search": {
                         "formAttr": {},
                         "inputAttr": {
@@ -146,26 +150,35 @@
 
                     return searchUl.hide();
                 },
-                createShowHideSwitch = function (plugin, menuUl) {
-                    return $("<img>", {
-                        "src": "img/hide.png",
-                        "class": "show-hide-switch show"
-                    }).click(function () {
-                        var showHideImg = $(this);
+                processShowHideSwitch = function (showHideSwitch, plugin, menuUl) {
+                    return $(showHideSwitch)
+                        .addClass("doctran-menu-show-hide-img hide")
+                        .click(function () {
+                            var showHideImg = $(this);
 
-                        // Change display to stop resize on hide and change the switch's image.
-                        if(plugin.is(":hidden")) {
-                            showHideImg.attr("src", "img/hide.png");
-                            menuUl.css({"width": "auto", "display": "inline-block"});
-                        }
-                        else {
-                            menuUl.css({"width": plugin.width(), "display": "block"});
-                            showHideImg.attr("src", "img/show.png");
-                        }
+                            // Change display to stop resize on hide and change the switch's image.
+                            if (plugin.is(":hidden")) {
+                                if (options.showHide.onHide != null) {
+                                    options.showHide.onHide();
+                                }
 
-                        // Animate the show/hide process.
-                        plugin.animate({width: 'toggle'}, options.hideDuration);
-                    });
+                                showHideImg.attr("src", "img/hide.png");
+                                menuUl.css({"width": "auto"});
+                            }
+                            else {
+                                if (options.showHide.onShow != null) {
+                                    options.showHide.onShow();
+                                }
+
+                                menuUl.css({"width": plugin.width()});
+                                showHideImg.attr("src", "img/show.png");
+                            }
+
+                            showHideImg.toggleClass("show");
+                            showHideImg.toggleClass("hide");
+                            // Animate the show/hide process.
+                            plugin.animate({width: 'toggle'}, options.showHide.toggleDuration);
+                        });
                 },
                 addExpanders = function (parent_ul) {
 
@@ -218,7 +231,7 @@
                                     // Do the opposite of what is expected as the is called before the
                                     // toggle. Must be called beforehand because of possible animation.
                                     expander.children("a").text(!child_ul.is(":visible") ? options.expanderOpen : options.expanderClosed);
-                                    child_ul.slideToggle(options.expandDuration);
+                                    child_ul.slideToggle(options.toggleDuration);
                                 });
                             li_i.prepend(expanderNode);
                         }
@@ -239,15 +252,15 @@
                     plugin.append(searchUl);
                 },
                 addShowHide = function (plugin, menuUl) {
-                    if (options.appendShowHide != null) {
-                        $(options.appendShowHide).append(createShowHideSwitch(plugin, menuUl));
+                    if (options.showHide.appendTo != null) {
+                        processShowHideSwitch(options.showHide.appendTo, plugin, menuUl);
                     }
                 },
                 scrollTo = function (plugin, item) {
                     plugin.scrollTop(item.offset().top - plugin.offset().top + plugin.scrollTop() - (plugin.height() / 2));
                 },
                 openActive = function (plugin, activeLi) {
-                    var toggleDuration = options.expandDuration;
+                    var toggleDuration = options.toggleDuration;
 
                     // If an active element is not specified then do nothing.
                     if (!activeLi.length) {
@@ -255,13 +268,13 @@
                     }
 
                     // We don't want the animation to be run when the menu is first loaded.
-                    options.expandDuration = 0;
+                    options.toggleDuration = 0;
 
                     // Click the active list item's expander, as well as its parents.
                     activeLi.parents("li").andSelf().children(".expander").click();
 
                     // Set the animation to its previous value.
-                    options.expandDuration = toggleDuration;
+                    options.toggleDuration = toggleDuration;
 
                     // Scroll so that the active list item appears in the center of the menu.
                     scrollTo(plugin, activeLi);
@@ -291,7 +304,6 @@
                 if (options.search) {
                     addSearchInput(plugin);
                 }
-
             });
         }
     });
