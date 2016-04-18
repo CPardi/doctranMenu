@@ -50,4 +50,4 @@ where `options` can be
 For examples, see [exampleusage.html](exampleusage.html).
 
 ## License
-Mozilla Public License 2.0
+[Mozilla Public License 2.0](LICENSE)
