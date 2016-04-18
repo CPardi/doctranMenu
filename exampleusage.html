@@ -6,18 +6,42 @@
     <title>Menu Test</title>
     <link rel="stylesheet" type="text/css" href="doctranmenu.css"/>
 
+    <style>
+        .example {
+            clear: both;
+            margin-bottom: 2em;
+        }
+
+        .doctran-menu {
+            float: left;
+            margin-right: 3em;
+            margin-bottom: 2em;
+            width: 20em;
+            clear: left;
+        }
+    </style>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script type="text/javascript" src="doctranmenu.js"></script>
+
     <script>
         $(document).ready(function () {
             "use strict";
-            $("#example1").doctranMenu({
+            $("#example1>.doctran-menu").doctranMenu();
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            "use strict";
+            $("#example2 > .doctran-menu").doctranMenu({
                 "toggleDuration": 150,
                 "showHide": {
                     "toggleDuration": 300,
-                    "appendTo": "#toggle1"
+                    "appendTo": "#example2>.toggle"
                 },
-                "search": {"formAttr": {action: "search.html"}}
+                "search": {
+                    "formAttr": {action: "search.html"}
+                }
             });
         });
     </script>
@@ -26,38 +50,89 @@
 
 <body>
 
-<div style="float:left;margin-right:3em;width:20em;" id="example1" class="doctran-menu">
-    <ul>
-        <li>
-            <span class="title">Search Engines</span>
-            <ul>
-                <li><a href="www.google.com">Google</a>
-                    <ul>
-                        <li><a href="www.images.google.com">Images</a>
-                        </li>
-                        <li><a href="www.maps.google.com">Maps</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="http://www.yahoo.co.uk">Yahoo</a>
-                </li>
-                <li>
-                    <a href="http://www.duckduckgo.com">DuckDuckGo</a>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <a href="dsfdsf">News Outlets</a>
-            <ul>
-                <li><a href="http://www.bbc.co.uk">BBC News</a></li>
-                <li><a href="http://www.itv.com/news/">ITV News</a></li>
-            </ul>
-        </li>
-    </ul>
+<!--Example 1-->
+<div id="example1" class="example">
+    <h1>Example 1</h1>
+    <p>This example show a menu with the default options.</p>
+    <div class="doctran-menu">
+        <ul>
+            <li>
+                <span class="title">Search Engines</span>
+                <ul>
+                    <li><a href="www.google.com">Google</a>
+                        <ul>
+                            <li><a href="www.images.google.com">Images</a>
+                            </li>
+                            <li><a href="www.maps.google.com">Maps</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="http://www.yahoo.co.uk">Yahoo</a>
+                    </li>
+                    <li>
+                        <a href="http://www.duckduckgo.com">DuckDuckGo</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <span class="title">News Outlets</span>
+                <ul>
+                    <li><a href="http://www.bbc.co.uk">BBC News</a></li>
+                    <li><a href="http://www.itv.com/news/">ITV News</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
 </div>
 
-<div id="toggle1"></div>
+<!--Example 2-->
+<div id="example2" class="example">
+    <h1>Example 2</h1>
+    <p>This example show a menu with the following options.</p>
+    <pre>
+    "toggleDuration": 150,
+    "showHide": {
+        "toggleDuration": 300,
+        "appendTo": "#example2>.toggle"
+    },
+    "search": {
+        "formAttr": {action: "search.html"}
+    }
+    </pre>
+
+    <div class="doctran-menu">
+        <ul>
+            <li>
+                <span class="title">Search Engines</span>
+                <ul>
+                    <li><a href="www.google.com">Google</a>
+                        <ul>
+                            <li><a href="www.images.google.com">Images</a>
+                            </li>
+                            <li><a href="www.maps.google.com">Maps</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="http://www.yahoo.co.uk">Yahoo</a>
+                    </li>
+                    <li>
+                        <a href="http://www.duckduckgo.com">DuckDuckGo</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <span class="title">News Outlets</span>
+                <ul>
+                    <li><a href="http://www.bbc.co.uk">BBC News</a></li>
+                    <li><a href="http://www.itv.com/news/">ITV News</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="toggle"></div>
+</div>
 
 </body>
 
