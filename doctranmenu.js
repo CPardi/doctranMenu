@@ -4,21 +4,35 @@
         doctranMenu: function (user_options) {
 
             var defaults = {
+                    // Specifies the time of the animation to open or close a menu item.
                     "toggleDuration": 0,
+                    // Specifies whether close a menu item's list should close all nested menu item lists.
                     "recursiveClose": true,
+                    // Specifies whether open another menu item list at the same depth should close an already open
+                    // item list.
                     "uniqueBranching": true,
+                    // The character to use for open expander.
                     "expanderOpen": "▼",
+                    // The character to use for close expander.
                     "expanderClosed": "▶",
-                    "markTargeted": true,
+                    // Specifies whether the menu should open to the item marked with the class 'active'.
                     "openActive": true,
+                    // Properties relating to the show/hide switch.
                     "showHide": {
+                        // Specifies the time of the animation to open or close the menu.
                         "toggleDuration": 0,
+                        // The element to use as a show/hide switch.
                         "appendTo": null,
+                        // Action to perform when the show/hide switch is clicked to show the menu.
                         "onShow": null,
+                        // Action to perform when the show/hide switch is clicked to hide the menu.
                         "onHide": null
                     },
+                    // Properties relating to the search form.
                     "search": {
+                        // The search form action.
                         "action": null,
+                        // The filtering method.
                         "filter": function (a, searchString) {
                             // Used for search, a regex with special characters escaped.
                             var r = new RegExp(searchString.replace(/[\-\[\]\/\{}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&"), 'i');
@@ -26,6 +40,7 @@
                             // Remember a.text() is all that is returned by "resultInfo".
                             return a.text().match(r);
                         },
+                        // Function to construct search results information.
                         "resultInfo": function (a) {
                             var containerA = a.parent().parent().parent().children("a, .title");
                             return containerA.length ? " (" + containerA.text() + ")" : "";
@@ -135,10 +150,8 @@
                     // Flatten the menu list and add it to the plugin.
                     menuUl.find("li>a").each(function () {
                         var a = $(this),
-                            info,
+                            info = options.search.resultInfo(a),
                             newLink;
-
-                        info = options.search.resultInfo(a);
 
                         newLink = a.clone().append($("<span>", {
                             "class": "resultInfo"
@@ -229,10 +242,8 @@
 
                                     // Toggle class to add css effects.
                                     expander.toggleClass("open");
-                                    if (options.markTargeted) {
-                                        li.toggleClass("targeted");
-                                        li.parent().closest("li:not(.sublist)").toggleClass("targeted");
-                                    }
+                                    li.toggleClass("targeted");
+                                    li.parent().closest("li:not(.sublist)").toggleClass("targeted");
 
                                     // Do the opposite of what is expected as the is called before the
                                     // toggle. Must be called beforehand because of possible animation.

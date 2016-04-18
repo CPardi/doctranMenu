@@ -27,24 +27,18 @@
     <script>
         $(document).ready(function () {
             "use strict";
-            $("#example1>.doctran-menu").doctranMenu();
-        });
-    </script>
 
-    <script>
-        $(document).ready(function () {
-            "use strict";
+            // Example 1
+            $("#example1>.doctran-menu").doctranMenu();
+
+            // Example 2
             $("#example2 > .doctran-menu").doctranMenu({
                 "showHide": {
                     "appendTo": "#example2>.toggle"
                 }
             });
-        });
-    </script>
 
-    <script>
-        $(document).ready(function () {
-            "use strict";
+            // Example 3
             $("#example3 > .doctran-menu").doctranMenu({
                 "toggleDuration": 150,
                 "showHide": {
@@ -54,6 +48,16 @@
                 "search": {
                     action: "search.html"
                 }
+            });
+
+            // Example 4
+            $("#example4 > .doctran-menu").doctranMenu({
+                "uniqueBranching": false
+            });
+
+            // Example 5
+            $("#example5 > .doctran-menu").doctranMenu({
+                "recursiveClose": false
             });
         });
     </script>
@@ -65,17 +69,17 @@
 <!--Example 1-->
 <div id="example1" class="example">
     <h1>Example 1</h1>
-    <p>This example show a menu with default options.</p>
+    <p>This example shows a menu with default options.</p>
     <div class="doctran-menu">
         <ul>
             <li>
                 <span class="title">Search Engines</span>
                 <ul>
-                    <li><a href="www.google.com">Google</a>
+                    <li><a href="http://www.google.com">Google</a>
                         <ul>
-                            <li><a href="www.images.google.com">Images</a>
+                            <li><a href="http://www.images.google.com">Images</a>
                             </li>
-                            <li><a href="www.maps.google.com">Maps</a>
+                            <li><a href="http://www.maps.google.com">Maps</a>
                             </li>
                         </ul>
                     </li>
@@ -101,7 +105,7 @@
 <!--Example 2-->
 <div id="example2" class="example">
     <h1>Example 2</h1>
-    <p>This example show a menu with a show/hide switch. The following options are used:</p>
+    <p>This example shows a menu with a show/hide switch. The following options are used:</p>
     <pre>
     "showHide": {
         "appendTo": "#example2>.toggle"
@@ -113,11 +117,11 @@
             <li>
                 <span class="title">Search Engines</span>
                 <ul>
-                    <li><a href="www.google.com">Google</a>
+                    <li><a href="http://www.google.com">Google</a>
                         <ul>
-                            <li><a href="www.images.google.com">Images</a>
+                            <li><a href="http://www.images.google.com">Images</a>
                             </li>
-                            <li><a href="www.maps.google.com">Maps</a>
+                            <li><a href="http://www.maps.google.com">Maps</a>
                             </li>
                         </ul>
                     </li>
@@ -144,7 +148,7 @@
 <!--Example 3-->
 <div id="example3" class="example">
     <h1>Example 3</h1>
-    <p>This example show a menu with the following options.</p>
+    <p>This example shows a menu with animations. The following options are used:</p>
     <pre>
     "toggleDuration": 150,
     "showHide": {
@@ -161,11 +165,93 @@
             <li>
                 <span class="title">Search Engines</span>
                 <ul>
-                    <li><a href="www.google.com">Google</a>
+                    <li><a href="http://www.google.com">Google</a>
                         <ul>
-                            <li><a href="www.images.google.com">Images</a>
+                            <li><a href="http://www.images.google.com">Images</a>
                             </li>
-                            <li><a href="www.maps.google.com">Maps</a>
+                            <li><a href="http://www.maps.google.com">Maps</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="http://www.yahoo.co.uk">Yahoo</a>
+                    </li>
+                    <li>
+                        <a href="http://www.duckduckgo.com">DuckDuckGo</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <span class="title">News Outlets</span>
+                <ul>
+                    <li><a href="http://www.bbc.co.uk">BBC News</a></li>
+                    <li><a href="http://www.itv.com/news/">ITV News</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="toggle"></div>
+</div>
+
+<!--Example 4-->
+<div id="example4" class="example">
+    <h1>Example 4</h1>
+    <p>This example shows a menu that allows multiple item lists to be opened. The following options are used:</p>
+    <pre>
+    "uniqueBranching": false,
+    </pre>
+
+    <div class="doctran-menu">
+        <ul>
+            <li>
+                <span class="title">Search Engines</span>
+                <ul>
+                    <li><a href="http://www.google.com">Google</a>
+                        <ul>
+                            <li><a href="http://www.images.google.com">Images</a>
+                            </li>
+                            <li><a href="http://www.maps.google.com">Maps</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="http://www.yahoo.co.uk">Yahoo</a>
+                    </li>
+                    <li>
+                        <a href="http://www.duckduckgo.com">DuckDuckGo</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <span class="title">News Outlets</span>
+                <ul>
+                    <li><a href="http://www.bbc.co.uk">BBC News</a></li>
+                    <li><a href="http://www.itv.com/news/">ITV News</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="toggle"></div>
+</div>
+
+<!--Example 4-->
+<div id="example5" class="example">
+    <h1>Example 5</h1>
+    <p>The example shows a menu where closing a menu item list leaves the sub item lists unchanged. The following options are used:</p>
+    <pre>
+    "recursiveClose": false,
+    </pre>
+
+    <div class="doctran-menu">
+        <ul>
+            <li>
+                <span class="title">Search Engines</span>
+                <ul>
+                    <li><a href="http://www.google.com">Google</a>
+                        <ul>
+                            <li><a href="http://www.images.google.com">Images</a>
+                            </li>
+                            <li><a href="http://www.maps.google.com">Maps</a>
                             </li>
                         </ul>
                     </li>
