@@ -21,7 +21,7 @@
 @phi: 1.618; // Expander uses golden ratio to calculation its width.
 @item-height: 1.6em;
 
-// Base style that assumnes no CSS3 and Javascript available.
+// Base style that assumes no CSS3 and Javascript available.
 .doctran-menu {
   font-family: sans-serif;
   font-size: @item-font-size;
@@ -145,14 +145,12 @@
       cursor: hand;
       cursor: pointer;
       float: left;
-      height: @item-height;
       width: @item-height / @phi;
       text-align: center;
 
       > a {
         color: @text;
         font-size: @expander-font-size;
-        line-height: unit(@item-height / @expander-font-size);
       }
 
       &:hover {
