@@ -30,17 +30,29 @@
             $("#example1>.doctran-menu").doctranMenu();
         });
     </script>
+
     <script>
         $(document).ready(function () {
             "use strict";
             $("#example2 > .doctran-menu").doctranMenu({
+                "showHide": {
+                    "appendTo": "#example2>.toggle"
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            "use strict";
+            $("#example3 > .doctran-menu").doctranMenu({
                 "toggleDuration": 150,
                 "showHide": {
                     "toggleDuration": 300,
                     "appendTo": "#example2>.toggle"
                 },
                 "search": {
-                    "formAttr": {action: "search.html"}
+                    action: "search.html"
                 }
             });
         });
@@ -53,7 +65,7 @@
 <!--Example 1-->
 <div id="example1" class="example">
     <h1>Example 1</h1>
-    <p>This example show a menu with the default options.</p>
+    <p>This example show a menu with default options.</p>
     <div class="doctran-menu">
         <ul>
             <li>
@@ -89,6 +101,49 @@
 <!--Example 2-->
 <div id="example2" class="example">
     <h1>Example 2</h1>
+    <p>This example show a menu with a show/hide switch. The following options are used:</p>
+    <pre>
+    "showHide": {
+        "appendTo": "#example2>.toggle"
+    },
+    </pre>
+
+    <div class="doctran-menu">
+        <ul>
+            <li>
+                <span class="title">Search Engines</span>
+                <ul>
+                    <li><a href="www.google.com">Google</a>
+                        <ul>
+                            <li><a href="www.images.google.com">Images</a>
+                            </li>
+                            <li><a href="www.maps.google.com">Maps</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="http://www.yahoo.co.uk">Yahoo</a>
+                    </li>
+                    <li>
+                        <a href="http://www.duckduckgo.com">DuckDuckGo</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <span class="title">News Outlets</span>
+                <ul>
+                    <li><a href="http://www.bbc.co.uk">BBC News</a></li>
+                    <li><a href="http://www.itv.com/news/">ITV News</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="toggle"></div>
+</div>
+
+<!--Example 3-->
+<div id="example3" class="example">
+    <h1>Example 3</h1>
     <p>This example show a menu with the following options.</p>
     <pre>
     "toggleDuration": 150,

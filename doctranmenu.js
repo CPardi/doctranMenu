@@ -18,13 +18,8 @@
                         "onHide": null
                     },
                     "search": {
-                        "formAttr": {},
-                        "inputAttr": {
-                            "type": "text",
-                            "value": "Filter (Press ENTER to Search)...",
-                            "autocomplete": "off"
-                        },
-                        filter: function (a, searchString) {
+                        "action": null,
+                        "filter": function (a, searchString) {
                             // Used for search, a regex with special characters escaped.
                             var r = new RegExp(searchString.replace(/[\-\[\]\/\{}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&"), 'i');
 
@@ -39,6 +34,9 @@
                 },
             // Merge the users setting with the defaults.
                 options = $.extend(true, defaults, user_options),
+                SearchText = function () {
+                    return "Filter" + (options.search.action === null ? "" : " (Press ENTER to Search)...");
+                },
             // Methods
                 createExpander = function () {
                     return $("<span>", {
@@ -53,18 +51,25 @@
                     }));
                 },
                 createSearchInput = function (plugin, searchUl, menuUl) {
-                    return $("<input>", options.search.inputAttr)
+                    return $("<input>", {
+                        "name": "q",
+                        "value": SearchText()
+                    })
+                    // If the search string is being displayed, then remove it when the user clicks the search box.
                         .focusin(function () {
                             var input = $(this);
                             input.toggleClass("active");
-                            if (input.prop("value") === options.search.inputAttr.value) {
+                            if (input.prop("value") === SearchText()) {
                                 input.prop("value", "");
                             }
-                        }).focusout(function () {
+                        })
+                        // If the user leaves the search box blanks when the go out of the search box, then display
+                        // the search string.
+                        .focusout(function () {
                             var input = $(this);
                             input.toggleClass("active");
                             if (input.prop("value") === "") {
-                                input.prop("value", options.search.inputAttr.value);
+                                input.prop("value", SearchText);
                             }
                             searchUl.children(".focused").removeClass("focused");
                         })
@@ -115,6 +120,7 @@
                                     .filter(function () {
                                         return options.search.filter($(this).children("a"), searchString);
                                     }).show();
+
                                 menuUl.hide();
                                 searchUl.show();
                             }
@@ -239,15 +245,21 @@
                         li_i.children("ul").toggle();
                     });
                 },
-                addSearchInput = function (plugin) {
-                    var menuUl = plugin.children(".menu"),
-                        searchUl = createSearchResults(plugin, menuUl),
-                        searchForm = $("<form>", options.search.formAttr).submit(function (e) { // Prevent form submission is an item is in focus.
-                            if (searchUl.children(".focused").length) {
+                addSearchInput = function (plugin, menuUl) {
+                    var searchUl = createSearchResults(plugin, menuUl),
+                        searchResults = createSearchInput(plugin, searchUl, menuUl),
+                        searchForm = $("<form>", {
+                            "action": options.search.action,
+                            "type": "text",
+                            "autocomplete": "off",
+                            "value": SearchText
+                        }).submit(function (e) { // Prevent form submission is an item is in focus.
+                            if (searchUl.children(".focused").length || options.search.action === null) {
                                 e.preventDefault();
                                 return false;
                             }
-                        }).append(createSearchInput(plugin, searchUl, menuUl));
+                        }).append(searchResults);
+
                     plugin.prepend(searchForm);
                     plugin.append(searchUl);
                 },
@@ -302,7 +314,7 @@
 
                 // If requested, make the menu searchable.
                 if (options.search) {
-                    addSearchInput(plugin);
+                    addSearchInput(plugin, menuUl);
                 }
             });
         }
