@@ -59,6 +59,9 @@
             $("#example5 > .doctran-menu").doctranMenu({
                 "recursiveClose": false
             });
+
+            // Example 6
+            $("#example6 > .doctran-menu").doctranMenu();
         });
     </script>
 
@@ -265,6 +268,44 @@
             </li>
             <li>
                 <span class="title">News Outlets</span>
+                <ul>
+                    <li><a href="http://www.bbc.co.uk">BBC News</a></li>
+                    <li><a href="http://www.itv.com/news/">ITV News</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="toggle"></div>
+</div>
+
+<!--Example 6-->
+<div id="example6" class="example">
+    <h1>Example 6</h1>
+    <p>The example shows a menu where sublists are used.</p>
+
+    <div class="doctran-menu">
+        <ul>
+            <li class="sublist">
+                <span>Search Engines</span>
+                <ul>
+                    <li><a href="http://www.google.com">Google</a>
+                        <ul>
+                            <li><a href="http://www.images.google.com">Images</a>
+                            </li>
+                            <li><a href="http://www.maps.google.com">Maps</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="http://www.yahoo.co.uk">Yahoo</a>
+                    </li>
+                    <li>
+                        <a href="http://www.duckduckgo.com">DuckDuckGo</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="sublist">
+                <span>News Outlets</span>
                 <ul>
                     <li><a href="http://www.bbc.co.uk">BBC News</a></li>
                     <li><a href="http://www.itv.com/news/">ITV News</a></li>
