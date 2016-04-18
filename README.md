@@ -23,14 +23,29 @@ The menu marks up a standard HTML list, where the following correspondence is ma
  * `<span class="title">Title 1</span>` -> A unlinked menu item acting as a title.
  * `<li class="sublist"><span>Sub List 1</span><ul><li>...` -> A sublist with heading `Sub List 1`.
 
-When javascript is disabled styling elements will be maintained but the menu will appear fully expanded, and of course when Javascript and CSS is disable a list containing link will be display.
+When javascript is disabled styling elements will be maintained but the menu will appear fully expanded, and of course when Javascript and CSS is disabled a list containing link will be display.
 
 To get javascript to process the HTML list you have to run the `doctranMenu` function. For example, on a element having a `doctran-menu` class you would run
 ```javascript
 $(".doctran-menu").doctranMenu(options);
 ```
 where `options` can be
- * 
+ * toggleDuration, Specifies the time of the animation to open or close a menu item. (Default: 0).
+ * recursiveClose, Specifies whether close a menu item's list should close all nested menu item lists.(Default: true).
+ * uniqueBranching, Specifies whether open another menu item list at the same depth should close an already open item list. (Default: true).
+ * expanderOpen, The character to use for open expander. (Default: "▼").
+
+ * expanderClosed, The character to use for close expander. (Default: "▶").
+ * openActive, Specifies whether the menu should open to the item marked with the class 'active' (Default: true).
+ * showHide, Properties relating to the show/hide switch.(Default: 0).
+ * showHide.toggleDuration, Specifies the time of the animation to open or close the menu. (Default: null).
+ * showHide.appendTo, The element to use as a show/hide switch. (Default: null).
+ * showHide.onShow, Action to perform when the show/hide switch is clicked to show the menu.(Default: null).
+ * showHide.onHide, Action to perform when the show/hide switch is clicked to hide the menu. (Default: null).
+ * search, Properties relating to the search form.
+ * search.action, The search form action. (Default: null).
+ * search.filter, The filtering method.
+ * search.resultInfo, Function to construct search results information.
 
 ## Examples
 For examples, see [exampleusage.html](exampleusage.html).
