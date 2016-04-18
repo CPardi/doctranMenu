@@ -3,7 +3,7 @@ A progressively enhancing jquery menu. Originally developed for the Doctran proj
 
 ## Basic Usage
 
-The project consists of a LESS stylesheet and a JavaScript. However, the minified JavaScript and the compiled LESS should be used. To do this simply place [doctranmenu.min.js](doctranmenu.min.js) and [doctranmenu.css](doctranmenu.css) into you folder where your HTML resides and include the following lines in your HTML document:
+The project consists of a LESS stylesheet and a JavaScript. However, the minified JavaScript and the compiled LESS should be used. To do this simply place [doctranmenu.min.js](doctranmenu.min.js), [doctranmenu.css](doctranmenu.css) and the [img](img) folder into the folder where your HTML resides and include the following lines in your HTML document:
 
 ```html
 <link rel="stylesheet" type="text/css" href="doctranmenu.css"/>
