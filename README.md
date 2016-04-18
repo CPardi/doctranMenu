@@ -34,7 +34,6 @@ where `options` can be
  * recursiveClose, Specifies whether close a menu item's list should close all nested menu item lists.(Default: true).
  * uniqueBranching, Specifies whether open another menu item list at the same depth should close an already open item list. (Default: true).
  * expanderOpen, The character to use for open expander. (Default: "▼").
-
  * expanderClosed, The character to use for close expander. (Default: "▶").
  * openActive, Specifies whether the menu should open to the item marked with the class 'active' (Default: true).
  * showHide, Properties relating to the show/hide switch.(Default: 0).
