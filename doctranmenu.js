@@ -171,7 +171,8 @@
                 },
                 processShowHideSwitch = function (showHideSwitch, plugin, menuUl) {
                     return $(showHideSwitch)
-                        .addClass("doctran-menu-show-hide-img hide")
+                        .addClass("doctran-menu-show-hide-img")
+                        .addClass("hide")
                         .click(function () {
                             var showHideImg = $(this);
 

@@ -15,7 +15,7 @@
 //Font Sizes
 @item-font-size: 1.05em;
 @subtitle-font-size: 0.75em;
-@expander-font-size: 0.5em;
+@expander-font-size: 0.65em;
 //
 //Geometry
 @phi: 1.618; // Expander uses golden ratio to calculation its width.
@@ -145,10 +145,14 @@
       cursor: hand;
       cursor: pointer;
       float: left;
-      width: @item-height / @phi;
       text-align: center;
+      width: @item-height / @phi;
+      line-height: 1.6;
 
       > a {
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI Symbol", "Lucida Sans Unicode", "Dotum", "Liberation Sans", "Liberation Serif", "sans-serif";
         color: @text;
         font-size: @expander-font-size;
       }
@@ -204,7 +208,7 @@
 
   ul > li {
     &.targeted {
-      background: radial-gradient(ellipse at center, @highlight0 0%, @highlight0 75%, rgba(255, 255, 255, 0) 100%);
+      background: @highlight0;
     }
   }
 }
